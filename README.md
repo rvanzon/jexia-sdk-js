@@ -211,6 +211,15 @@ npm run test
 
 ## Release History
 
+* 1.0.10 Browser build
+* 1.0.9 Fixed bud on subscriptions
+* 1.0.8 Npm version
+* 1.0.7 Fixed typos
+* 1.0.6 Npm version
+* 1.0.6 Fixed typos
+* 1.0.5 Npm version
+* 1.0.4 Changed default refresh session interval
+* 1.0.3 Npm version
 * 1.0.2 Readme example fixes
 * 1.0.1 Readme example fixes
 * 1.0.0 Initial release
