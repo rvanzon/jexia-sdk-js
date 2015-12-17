@@ -18,12 +18,6 @@ var client = new JexiaClient({
 
     // you can start interacting with your app
 
-}, function(error) {
-    // Oops!
-    console.log(error);
-})
-.catch(function(e) {
-    console.log(e);
 });
 ```
 
@@ -51,15 +45,7 @@ var client = new JexiaClient({
         // Message created successfully  
         console.log(message);
 
-    }, function(error) {
-        // Oops!
-        console.log(error);
     });
-}, function(error) {
-    console.log(error);
-})
-.catch(function(e) {
-    console.log(e);
 });
 ```
 
@@ -79,16 +65,7 @@ var client = new JexiaClient({
         // Message deleted successfully  
         console.log(message);
 
-    }, function(error) {
-        // Oops!
-        console.log(error);
     });
-},
-function(error) {
-    console.log(error);
-})
-.catch(function(e) {
-    console.log(e)
 });
 ```
 
@@ -110,16 +87,7 @@ var client = new JexiaClient({
         // Message updated successfully  
         console.log(message);
 
-    }, function(error) {
-        // Oops!
-        console.log(error);
     });
-},
-function(error) {
-    console.log(error);
-})
-.catch(function(e) {
-    console.log(e)
 });
 ```
 
@@ -139,16 +107,7 @@ var client = new JexiaClient({
         // Here is the message
         console.log(message);
 
-    }, function(error) {
-        // Oops!
-        console.log(error);
     });
-},
-function(error) {
-    console.log(error);
-})
-.catch(function(e) {
-    console.log(e)
 });
 ```
 
@@ -177,16 +136,8 @@ var client = new JexiaClient({
 
     messages.subscribe('*', function(message) {
         // Realtime!
-        // Whenever a message created on your data set
-        // you will have it also here!
         console.log(message);
     });
-},
-function(error) {
-    console.log(error);
-})
-.catch(function(e) {
-    console.log(e)
 });
 ```
 
@@ -205,12 +156,6 @@ var client = new JexiaClient({
     messages.subscribe('created', function(message) {
         console.log(message);
     });
-},
-function(error) {
-    console.log(error);
-})
-.catch(function(e) {
-    console.log(e)
 });
 ```
 
@@ -225,16 +170,10 @@ var client = new JexiaClient({
 }).then(function(app) {
     var messages = app.dataset('messages');
 
-    // Only when a new message created
+    // Only when a new message updated
     messages.subscribe('updated', function(message) {
         console.log(message);
     });
-},
-function(error) {
-    console.log(error);
-})
-.catch(function(e) {
-    console.log(e)
 });
 ```
 
@@ -249,16 +188,10 @@ var client = new JexiaClient({
 }).then(function(app) {
     var messages = app.dataset('messages');
 
-    // Only when a new message created
+    // Only when a new message deleted
     messages.subscribe('deleted', function(message) {
         console.log(message);
     });
-},
-function(error) {
-    console.log(error);
-})
-.catch(function(e) {
-    console.log(e)
 });
 ```
 
@@ -276,6 +209,7 @@ npm run test
 
 ## Release History
 
+* 1.0.1 Readme example fixes
 * 1.0.0 Initial release
 
 ## Issues
