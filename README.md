@@ -1,6 +1,8 @@
 # jexia-sdk-js
 Official javascript sdk for Jexia
 
+`Warning`: Currently this sdk is under active development. Breaking changes maybe introduced.  
+
 ## Installation
 ```bash
 $ npm install jexia-sdk-js
