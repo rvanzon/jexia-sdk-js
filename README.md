@@ -211,6 +211,7 @@ npm run test
 
 ## Release History
 
+* 1.0.2 Readme example fixes
 * 1.0.1 Readme example fixes
 * 1.0.0 Initial release
 
