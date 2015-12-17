@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jexia-inc/jexia-skd-js.git"
+    "url": "git+https://github.com/jexia-inc/jexia-sdk-js.git"
   },
   "author": {
     "name": "Dionysis Pantazopoulos",
