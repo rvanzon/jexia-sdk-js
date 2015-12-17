@@ -1,0 +1,8 @@
+coverage
+.lock-wscript
+node_modules
+dist
+.npm-debug.log
+docs
+.DS_Store
+examples
