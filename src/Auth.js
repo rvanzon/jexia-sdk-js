@@ -20,8 +20,7 @@ export default class Auth {
         this.refreshToken = '';
 
         // 1 hour and 50 minutes; JEXIA token expires in 2 hours
-        // this.autoRefresh(1000 * 60 * 110);
-        this.autoRefresh(3000);
+        this.autoRefresh(1000 * 60 * 110);
     }
 
     init() {
