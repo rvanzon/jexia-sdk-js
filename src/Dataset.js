@@ -113,7 +113,7 @@ export default class Dataset {
         }
 
         // Attach the callback
-        this.bus.on(this.getEventNamespace(event), cb);
+        this.bus.on(this.getEventNamespace(event), cb);        
 
         // Emit new subscription
         this.bus.emit('jexia.dataset.subscription', {

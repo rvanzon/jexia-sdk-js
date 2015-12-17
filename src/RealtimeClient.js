@@ -16,6 +16,9 @@ export default class RealtimeClient {
         // Active subscriptions
         this.subscriptions = [];
 
+        // Current subsription
+        this.curSubscription = '';
+
         // Initialize real time client
         this.faye = new faye.Client(this.url);
 
@@ -47,7 +50,11 @@ export default class RealtimeClient {
             channel = '/' + data.app.id + '/' + name + '/' + data.app.key;
 
         let subscription = this.faye.subscribe(channel, (data) => {
-            this.bus.emit(event, data);
+            let curEvent = this.getEventWithoutNamespace(event);
+            if( data.type === curEvent || curEvent === '*' ) {
+                this.curSubscription = event;
+                this.bus.emit(event, data);
+            }
         });
 
         this.subscriptions.push({
