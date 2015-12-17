@@ -24,6 +24,32 @@ export default class Dataset {
         });
     }
 
+    query(params) {
+        return this.request({
+            method: 'GET',
+            data: '',
+            id: '',
+            qs: params
+        });
+    }
+
+    count() {
+        return new Promise((resolve, reject) => {
+            this.request({
+                method: 'GET',
+                data: '',
+                id: '',
+                qs: {
+                    jexia_info: true
+                }
+            }).then( (data) => {
+                resolve(data.info.total);
+            }, (error) => {
+                reject(error);
+            });
+        });
+    }
+
     create(data) {
         return this.request({
             method: 'POST',
@@ -61,12 +87,17 @@ export default class Dataset {
 
         let method = params.method,
             data = params.data,
-            id = params.id;
+            id = params.id,
+            qs = {};
+
+        if( typeof params.qs !== "undefined" ) {
+            qs = params.qs;
+        }
 
         return new Promise((resolve, reject) => {
             request({
                 url: this.getUrl() + id,
-                qs: {},
+                qs: qs,
                 rejectUnauthorized: false,
                 method: method,
                 json: data,
@@ -74,6 +105,7 @@ export default class Dataset {
                     'Authorization': 'Bearer ' + this.auth.getToken()
                 }
             }, (error, response, body) => {
+
                 if( error ) {
                     reject(error);
                 }
@@ -113,7 +145,7 @@ export default class Dataset {
         }
 
         // Attach the callback
-        this.bus.on(this.getEventNamespace(event), cb);        
+        this.bus.on(this.getEventNamespace(event), cb);
 
         // Emit new subscription
         this.bus.emit('jexia.dataset.subscription', {
