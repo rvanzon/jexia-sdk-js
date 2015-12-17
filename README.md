@@ -1,7 +1,7 @@
 # jexia-sdk-js
 Official javascript sdk for Jexia
 
-`Warning`: Currently this sdk is under active development. Breaking changes maybe introduced.  
+**Warning**: Currently this sdk is under active development. Breaking changes maybe introduced.  
 
 ## Installation
 ```bash
@@ -9,6 +9,10 @@ $ npm install jexia-sdk-js
 ```
 
 ## Usage
+You can use jexia-sdk on nodejs and also on browser with the same API.
+The only different thing is how you require the jexia-sdk-js.
+
+## node
 ```js
 var JexiaClient = require('jexia-sdk-js').JexiaClient;
 
@@ -22,6 +26,22 @@ var client = new JexiaClient({
 
 });
 ```
+## browser
+```html
+<script src="node_modules/jexia-sdk-js/lib/browser/index.min.js"></script>
+<script>
+// IMPORTANT
+var JexiaClient = window.jexiaClientBrowser.JexiaClient;
+
+var client = new JexiaClient({
+    appId: 'YOUR_APP_ID',
+    appKey: 'YOUR_APP_KEY',
+    appSecret: 'YOUR_APP_SECRET'
+}).then( function(app) {
+
+});
+</script>
+```
 
 # Examples
 
@@ -31,7 +51,6 @@ and a field `value` which contains the actual text
 
 ### Creating a message:
 ```js
-var JexiaClient = require('jexia-sdk-js').JexiaClient;
 
 var client = new JexiaClient({
     appId: 'YOUR_APP_ID',
@@ -53,8 +72,6 @@ var client = new JexiaClient({
 
 ### Deleting a message:
 ```js
-var JexiaClient = require('jexia-sdk-js').JexiaClient;
-
 var client = new JexiaClient({
     appId: 'YOUR_APP_ID',
     appKey: 'YOUR_APP_KEY',
@@ -73,8 +90,6 @@ var client = new JexiaClient({
 
 ### Updating a message:
 ```js
-var JexiaClient = require('jexia-sdk-js').JexiaClient;
-
 var client = new JexiaClient({
     appId: 'YOUR_APP_ID',
     appKey: 'YOUR_APP_KEY',
@@ -95,8 +110,6 @@ var client = new JexiaClient({
 
 ### Getting a message:
 ```js
-var JexiaClient = require('jexia-sdk-js').JexiaClient;
-
 var client = new JexiaClient({
     appId: 'YOUR_APP_ID',
     appKey: 'YOUR_APP_KEY',
@@ -127,8 +140,6 @@ There are 4 type of events that you can subscribe:
 
 ### Subscribe to all messages
 ```js
-var JexiaClient = require('jexia-sdk-js').JexiaClient;
-
 var client = new JexiaClient({
     appId: 'YOUR_APP_ID',
     appKey: 'YOUR_APP_KEY',
@@ -154,7 +165,7 @@ var client = new JexiaClient({
 }).then(function(app) {
     var messages = app.dataset('messages');
 
-    // Only when a new message created
+    // Only created messages
     messages.subscribe('created', function(message) {
         console.log(message);
     });
@@ -163,8 +174,6 @@ var client = new JexiaClient({
 
 ### Subscribe only to updated messages
 ```js
-var JexiaClient = require('jexia-sdk-js').JexiaClient;
-
 var client = new JexiaClient({
     appId: 'YOUR_APP_ID',
     appKey: 'YOUR_APP_KEY',
@@ -172,7 +181,7 @@ var client = new JexiaClient({
 }).then(function(app) {
     var messages = app.dataset('messages');
 
-    // Only when a new message updated
+    // Only updated messages
     messages.subscribe('updated', function(message) {
         console.log(message);
     });
@@ -181,8 +190,6 @@ var client = new JexiaClient({
 
 ### Subscribe only to deleted messages
 ```js
-var JexiaClient = require('jexia-sdk-js').JexiaClient;
-
 var client = new JexiaClient({
     appId: 'YOUR_APP_ID',
     appKey: 'YOUR_APP_KEY',
@@ -190,7 +197,7 @@ var client = new JexiaClient({
 }).then(function(app) {
     var messages = app.dataset('messages');
 
-    // Only when a new message deleted
+    // Only deleted messages
     messages.subscribe('deleted', function(message) {
         console.log(message);
     });
@@ -211,18 +218,19 @@ npm run test
 
 ## Release History
 
+* 1.0.11 Browser example
 * 1.0.10 Browser build
-* 1.0.9 Fixed bud on subscriptions
-* 1.0.8 Npm version
-* 1.0.7 Fixed typos
-* 1.0.6 Npm version
-* 1.0.6 Fixed typos
-* 1.0.5 Npm version
-* 1.0.4 Changed default refresh session interval
-* 1.0.3 Npm version
-* 1.0.2 Readme example fixes
-* 1.0.1 Readme example fixes
-* 1.0.0 Initial release
+* 1.0.9  Fixed bud on subscriptions
+* 1.0.8  Npm version
+* 1.0.7  Fixed typos
+* 1.0.6  Npm version
+* 1.0.6  Fixed typos
+* 1.0.5  Npm version
+* 1.0.4  Changed default refresh session interval
+* 1.0.3  Npm version
+* 1.0.2  Readme example fixes
+* 1.0.1  Readme example fixes
+* 1.0.0  Initial release
 
 ## Issues
 Feel free to submit issues and enhancement requests.
