@@ -4,8 +4,13 @@ Official javascript sdk for Jexia
 **Warning**: Currently this sdk is under active development. Breaking changes may be introduced.  
 
 ## Installation
+Through npm:
 ```bash
 $ npm install jexia-sdk-js
+```
+Through bower:
+```bash
+$ bower install jexia-sdk-js
 ```
 
 ## Usage
