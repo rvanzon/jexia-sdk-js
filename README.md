@@ -1,4 +1,4 @@
-# jexia-sdk-js
+# jexia-sdk-js [![Build Status](https://travis-ci.org/jexia-inc/jexia-sdk-js.svg?branch=master)](https://travis-ci.org/jexia-inc/jexia-sdk-js)
 Official javascript sdk for Jexia
 
 **Warning**: Currently this sdk is under active development. Breaking changes may be introduced.  
