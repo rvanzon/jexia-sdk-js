@@ -14,17 +14,22 @@ describe('Class: Dataset', () => {
     });
 
     it('should not be constructed without params', () => {
-        expect(Dataset).to.throw();
+        expect(() => {new Dataset()}).to.throw(Error);
     });
 
     it('should throw an error on request without params', () => {
         let dataset = new Dataset('DATASET', {});
-        expect(dataset.request).to.throw();
+        expect(dataset.request).to.throw(Error);
     });
 
     it('should throw an error on subscribe without params', () => {
         let dataset = new Dataset('DATASET', {});
-        expect(dataset.subscribe).to.throw();
+        expect(dataset.subscribe).to.throw(Error);
+    });
+
+    it('should throw an error on unsubscribe without params', () => {
+        let dataset = new Dataset('DATASET', {});
+        expect(dataset.unsubscribe).to.throw(Error);
     });
 
 });

@@ -1,3 +1,4 @@
+import {expect} from 'chai';
 import {assert} from 'chai';
 import nock from 'nock';
 
@@ -6,7 +7,6 @@ import JexiaClient from '../src/JexiaClient.js';
 /** @test {JexiaClient} */
 describe('Class: JexiaClient', () => {
 
-    /** @test {JexiaClient#constructor} */
     it('should be constructed from one object param', (done) => {
         nock('http://foo.app.jexia.com')
             .post('/', { key: 'bar', secret: 'baz' }).reply(200, {
@@ -30,7 +30,6 @@ describe('Class: JexiaClient', () => {
         });
     });
 
-    /** @test {JexiaClient#constructor} */
     it('should be constructed from one object param with a valid token', (done) => {
         nock('http://foo.app.jexia.com')
             .post('/', { key: 'bar', secret: 'baz' }).reply(200, {
@@ -52,6 +51,32 @@ describe('Class: JexiaClient', () => {
 
             done();
         });
+    });
+
+    it('should not be constructed without params', () => {
+        nock('http://foo.app.jexia.com')
+            .post('/', { key: 'bar', secret: 'baz' }).reply(200, {
+                token: 'T0K3N',
+                refresh_token: 'REFTOKEN'
+            });
+
+        expect(() => {new JexiaClient()}).to.throw(Error);
+    });
+
+    it('should not be constructed with wrong params', () => {
+        nock('http://foo.app.jexia.com')
+            .post('/', { key: 'bar', secret: 'baz' }).reply(200, {
+                token: 'T0K3N',
+                refresh_token: 'REFTOKEN'
+            });
+
+        expect(() => {
+            new JexiaClient({
+                app: 'FOO',
+                another: 'BAR',
+                thing: 'BAZ'
+            })
+        }).to.throw(Error);
     });
 
 });

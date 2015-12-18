@@ -26,8 +26,7 @@ describe('Jexia Client Consumer', () => {
         .then(function(app) {
             // Return is important here for proper done()
             return app.dataset('messages').list().then( (messages) => {
-                assert.isDefined(messages);
-
+                expect(messages).to.eql([]);
                 done();
             });
         });
@@ -92,8 +91,6 @@ describe('Jexia Client Consumer', () => {
             return app.dataset('messages')
                 .delete('56675c7283b31aa5d8c5bfb9')
                 .then( (message) => {
-                    // No json from nock on delete req?
-                    message = JSON.parse(message);
                     assert.equal(message.id, '56675c7283b31aa5d8c5bfb9');
                     done();
                 });
@@ -405,6 +402,92 @@ describe('Jexia Client Consumer', () => {
             bus.removeAllListeners();
 
             done();
+        });
+    });
+
+    it('should get information about a dataset', (done) => {
+        nock('http://foo.app.jexia.com')
+            .post('/', { key: 'bar', secret: 'baz' })
+            .reply(200, {
+                token: 'T0K3N',
+                refresh_token: 'REFTOKEN'
+            })
+            .get('/messages/')
+            .query({
+                jexia_info: true
+            })
+            .reply(200, {
+                info: {
+                    count: 50,
+                    criteria: {},
+                    end: 50,
+                    start: 0,
+                    total: 339
+                }
+            });
+
+        // Return is important here for proper done()
+        return new JexiaClient({
+            appId: 'foo',
+            appKey: 'bar',
+            appSecret: 'baz',
+        })
+        .then(function(app) {
+            // Return is important here for proper done()
+            return app.dataset('messages').info()
+                .then( (info) => {
+                    assert.isDefined(info);
+                    assert.equal(info.total, 339);
+
+                    done();
+            });
+        });
+    });
+
+    it('should pass query params on dataset', (done) => {
+        let mock = [
+            {
+                "message": "Message 1",
+                "createdAt": "2015-12-14T10:25:28.538Z",
+                "updatedAt": "2015-12-14T10:25:28.538Z",
+                "id": "566e99184b3b174af6511a60"
+            },
+            {
+                "message": "Message 2",
+                "createdAt": "2015-12-14T11:25:28.538Z",
+                "updatedAt": "2015-12-14T11:25:28.538Z",
+                "id": "566e99184b3b174af6511a61"
+            }
+        ];
+
+        nock('http://foo.app.jexia.com')
+            .post('/', { key: 'bar', secret: 'baz' })
+            .reply(200, {
+                token: 'T0K3N',
+                refresh_token: 'REFTOKEN'
+            })
+            .get('/messages/')
+            .query({
+                limit: 2
+            })
+            .reply(200, mock);
+
+        // Return is important here for proper done()
+        return new JexiaClient({
+            appId: 'foo',
+            appKey: 'bar',
+            appSecret: 'baz',
+        })
+        .then(function(app) {
+            // Return is important here for proper done()
+            return app.dataset('messages').query({
+                limit: 2
+            })
+            .then( (res) => {
+                expect(res).to.have.length(2);
+
+                done();
+            });
         });
     });
 

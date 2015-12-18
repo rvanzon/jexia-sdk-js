@@ -23,6 +23,7 @@ describe('Class: Auth', () => {
     });
 
     it('should not be constructed without params', () => {
-        expect(Auth).to.throw();
+        expect(() => {new Auth()}).to.throw(Error);
     });
+    
 });

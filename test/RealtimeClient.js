@@ -31,7 +31,7 @@ describe('Class: RealtimeClient', () => {
     });
 
     it('should not be constructed without params', () => {
-        expect(RealtimeClient).to.throw();
+        expect(() => {new RealtimeClient()}).to.throw(Error);
     });
 
     it('should have faye attached', () => {
