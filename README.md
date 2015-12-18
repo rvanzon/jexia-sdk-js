@@ -218,6 +218,7 @@ npm run test
 
 ## Release History
 
+* 1.1.0 removed count() add info(), proper json response
 * 1.0.12 query(), count() on dataset
 * 1.0.11 Browser example
 * 1.0.10 Browser build
