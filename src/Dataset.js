@@ -33,7 +33,7 @@ export default class Dataset {
         });
     }
 
-    count() {
+    info() {
         return new Promise((resolve, reject) => {
             this.request({
                 method: 'GET',
@@ -42,8 +42,8 @@ export default class Dataset {
                 qs: {
                     jexia_info: true
                 }
-            }).then( (data) => {
-                resolve(data.info.total);
+            }).then( (body) => {
+                resolve(body.info);
             }, (error) => {
                 reject(error);
             });
@@ -90,7 +90,8 @@ export default class Dataset {
             id = params.id,
             qs = {};
 
-        if( typeof params.qs !== "undefined" ) {
+        // Query params
+        if( typeof params.qs !== 'undefined' ) {
             qs = params.qs;
         }
 
@@ -100,12 +101,11 @@ export default class Dataset {
                 qs: qs,
                 rejectUnauthorized: false,
                 method: method,
-                json: data,
+                json: data || true,
                 headers: {
                     'Authorization': 'Bearer ' + this.auth.getToken()
                 }
             }, (error, response, body) => {
-
                 if( error ) {
                     reject(error);
                 }
