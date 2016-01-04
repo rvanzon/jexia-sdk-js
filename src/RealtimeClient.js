@@ -1,25 +1,42 @@
 import faye from 'faye';
 
 /**
- * Realtime client
+ * Managing real time events
  */
 export default class RealtimeClient {
+
+    /**
+     * Create a new RealTimeClient object with some initial values.
+     * @param {Object} options - Initial options object
+     * @param {string} options.url - url
+     * @param {string} options.token - token
+     * @param {string} options.bus - {@link Bus}
+     * @return {Promise<JexiaClient, Error>}
+     */
     constructor(options) {
         if( !options ) {
             throw new Error('RealtimeClient needs some params');
         }
 
+        /** @type {string} */
         this.url = options.url;
+
+        /** @type {string} */
         this.token = options.token;
+
+        /** @type {Object} */
         this.bus = options.bus;
 
         // Active subscriptions
+        /** @type {Array} */
         this.subscriptions = [];
 
         // Current subsription
+        /** @type {string} */
         this.curSubscription = '';
 
         // Initialize real time client
+        /** @type {Object} */
         this.faye = new faye.Client(this.url);
 
         // Set auth token
@@ -36,6 +53,11 @@ export default class RealtimeClient {
         this.attachEventHandlers();
     }
 
+    /**
+     * Attach responsible event handlers
+     * @listens {jexia.auth.token} - New token
+     * @listens {jexia.dataset.subscription} - New dataset subsciption
+     */
     attachEventHandlers() {
         // Attach handler for new token
         this.bus.on('jexia.auth.token', (data) => { this.onToken(data); });
@@ -44,6 +66,10 @@ export default class RealtimeClient {
         this.bus.on('jexia.dataset.subscription', (data) => { this.onSubscription(data); });
     }
 
+    /**
+     * Responsible for handling a new subscription
+     * @param {Object} data - Subscription response
+     */
     onSubscription(data) {
         let name = data.dataset,
             event = data.event,
@@ -68,6 +94,10 @@ export default class RealtimeClient {
         });
     }
 
+    /**
+     * Responsible for handling a new token
+     * @param {Object} data - Subscription response
+     */
     onToken(data) {
         this.setToken(data.token);
 
@@ -91,11 +121,20 @@ export default class RealtimeClient {
         });
     }
 
+    /**
+     * get event name without namespace
+     * @param {string} event - Event with namespace attached
+     * @return {string} event - Event without namespace
+     */
     getEventWithoutNamespace(event) {
         let res = event.split('.');
         return res[1];
     }
 
+    /**
+     * Set the current token
+     * @param {string} token - token
+     */
     setToken(token) {
         this.token = token;
     }

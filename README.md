@@ -1,7 +1,7 @@
-# jexia-sdk-js [![Build Status](https://travis-ci.org/jexia-inc/jexia-sdk-js.svg?branch=master)](https://travis-ci.org/jexia-inc/jexia-sdk-js)
+# jexia-sdk-js [![Build Status](https://travis-ci.org/jexia-inc/jexia-sdk-js.svg?branch=master)](https://travis-ci.org/jexia-inc/jexia-sdk-js) [![Coverage Status](https://coveralls.io/repos/jexia-inc/jexia-sdk-js/badge.svg?branch=master&service=github)](https://coveralls.io/github/jexia-inc/jexia-sdk-js?branch=master)
 Official javascript sdk for Jexia
 
-**Warning**: Currently this sdk is under active development. Breaking changes may be introduced.  
+>Currently this SDK is under active development and it's not production ready
 
 ## Installation
 Through npm:
@@ -223,7 +223,8 @@ npm run test
 
 ## Release History
 
-* 1.1.0 removed count() add info(), proper json response
+* 1.1.1  Introduce api docs
+* 1.1.0  removed count() add info(), proper json response
 * 1.0.12 query(), count() on dataset
 * 1.0.11 Browser example
 * 1.0.10 Browser build

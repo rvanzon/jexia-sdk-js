@@ -1,15 +1,17 @@
 import EventEmitter from 'events';
 
 /**
- * Bus
+ * Global singleton event bus for dataset subscriptions.
  * @extends {EventEmitter}
  */
  class Bus extends EventEmitter {
-    constructor() {
-        super();
-    }
+     /**
+      * Create a new Bus object
+      */
+     constructor() {
+         super();
+     }
 }
 
-// Singleton
 let bus = new Bus();
 export default bus;
