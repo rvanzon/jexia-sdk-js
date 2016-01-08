@@ -51,7 +51,7 @@ Want to learn more? [Go to Wiki](https://github.com/jexia-inc/jexia-sdk-js/wiki)
 
 ## Contributing
 Contributions are more than welcome!
-Read the [contribution guidelines](https://github.com/jexia-inc/jexia-sdk-js/wiki/Contribution-Guidelines.md) page in the wiki.
+Read the [contribution guidelines](https://github.com/jexia-inc/jexia-sdk-js/wiki/Contributing-Guidelines) page in the wiki.
 
 ## License
 
