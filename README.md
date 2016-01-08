@@ -31,7 +31,7 @@ var client = new JexiaClient({
 ```
 ## browser
 ```html
-<script src="node_modules/jexia-sdk-js/lib/browser/index.min.js"></script>
+<script src="bower_components/jexia-sdk-js/lib/browser/index.min.js"></script>
 <script>
 // IMPORTANT
 var JexiaClient = window.jexiaClientBrowser.JexiaClient;
