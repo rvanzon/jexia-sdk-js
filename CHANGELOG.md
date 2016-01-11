@@ -1,3 +1,4 @@
+* 1.1.6  Introduce new browser-request
 * 1.1.5  Fixed browser example
 * 1.1.4  Add CHANGELOG, improve README
 * 1.1.3  Npm version
