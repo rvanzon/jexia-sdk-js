@@ -1,6 +1,6 @@
 {
   "name": "jexia-sdk-js",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Official javascript sdk for Jexia",
   "homepage": "https://github.com/jexia-inc/jexia-sdk-js#readme",
   "bugs:": {
