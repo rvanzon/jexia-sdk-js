@@ -143,6 +143,23 @@ export default class Dataset {
     }
 
     /**
+     * Get a record from a dataset
+     * @param {string} id - record id
+     * @return {Promise<Object, Error>}
+     * @example
+     * dataset.get('s6svsrw452rwfs').then(function(res) {
+     *    console.log(res);
+     * });
+     */
+    get(id) {
+        return this.request({
+            method: 'GET',
+            data: '',
+            id: id
+        });
+    }
+
+    /**
      * Get dataset url
      * @private
      * @return {string} url

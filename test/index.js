@@ -132,6 +132,39 @@ describe('Jexia Client Consumer', () => {
         });
     });
 
+    it('should get a specific record', (done) => {
+        nock('http://foo.app.jexia.com')
+            .post('/', { key: 'bar', secret: 'baz' })
+            .reply(200, {
+                token: 'T0K3N',
+                refresh_token: 'REFTOKEN'
+            })
+            .get('/messages/' + '56675c7283b31aa5d8c5bfb9')
+            .reply(200, {
+                value: 'FooBAZ',
+                createdAt: '2015-12-08T22:40:50.785Z',
+                updatedAt: '2015-12-09T00:45:45.883Z',
+                id: '56675c7283b31aa5d8c5bfb9'
+            });
+
+        // Return is important here for proper done()
+        return new JexiaClient({
+            appId: 'foo',
+            appKey: 'bar',
+            appSecret: 'baz'
+        })
+        .then(function(app) {
+            // Return is important here for proper done()
+            return app.dataset('messages')
+                .get('56675c7283b31aa5d8c5bfb9')
+                .then( (message) => {
+                    assert.equal(message.id, '56675c7283b31aa5d8c5bfb9');
+                    assert.equal(message.value, 'FooBAZ');
+                    done();
+                });
+        });
+    });
+
     it('should have an event bus attached', (done) => {
         let spy = sinon.spy();
 
