@@ -1,3 +1,4 @@
+* 1.1.6  Introduce get method on dataset
 * 1.1.6  Introduce new browser-request
 * 1.1.5  Fixed browser example
 * 1.1.4  Add CHANGELOG, improve README
