@@ -214,6 +214,9 @@ export default class Dataset {
                     reject(body.message);
                 }
 
+				// When we don't send a request as json
+				// we don't have a json object but a string
+				// so we are avoiding the json parse on the consumers
 				if( typeof body === 'string' ) {
 					body = JSON.parse(body);
 				}
