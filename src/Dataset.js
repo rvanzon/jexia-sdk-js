@@ -201,7 +201,7 @@ export default class Dataset {
                 qs: qs,
                 rejectUnauthorized: false,
                 method: method,
-                json: data || true || method !== 'DELETE',
+                json: data || true && method !== 'DELETE',
                 headers: {
                     'Authorization': 'Bearer ' + this.auth.getToken()
                 }
@@ -214,6 +214,9 @@ export default class Dataset {
                     reject(body.message);
                 }
 
+				if( typeof body === 'string' ) {
+					body = JSON.parse(body);
+				}
                 resolve(body);
             });
         });
