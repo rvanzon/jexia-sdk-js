@@ -201,7 +201,7 @@ export default class Dataset {
                 qs: qs,
                 rejectUnauthorized: false,
                 method: method,
-                json: data || true,
+                json: data || true || method !== 'DELETE',
                 headers: {
                     'Authorization': 'Bearer ' + this.auth.getToken()
                 }
